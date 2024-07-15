@@ -37,9 +37,9 @@
 
 ### UI Design
 
-- Here is an example of UI you can implement. You do not necessarily need to follow this exact design, this is only an example.
+Note: this is here to give you an idea, you are free to do your own design.
 
-![Clock UI](./clock_ui.png)
+![Clock UI 1](./clock_ui_1.png)
 
 ## Part B - Extend your watch
 
@@ -67,7 +67,9 @@
 
 ### UI Design
 
-TBD
+Note: this is here to give you an idea, you are free to do your own design.
+
+![Clock UI 2](./clock_ui_2.png)
 
 ## Part C - Further extend your watch
 
@@ -81,16 +83,20 @@ TBD
 
 #### Add matrices transformation
 
-- Add a set of classes to provide:
-    - TBD
+- Add some utility functions to define a 3x3 matrix, and to be able to apply a transformation to a point, that you will also define.
+- To give you some example, you should be able to compute the inverse matrix of a given matrix, to multiply it by another one.
+- To transform a point means you can apply a translation, rotation, scale operations.
 
 #### Add a new type of clock
 
 - Add a way (to your liking) to select two different UI of your clock, the first one being the one implemented in part A and B, the second one being an analog clock.
-- This analog clock must use the implemented classes in the previous section to animate the clock handles. You must display a handle for hours, minutes, seconds
+- This analog clock must use the implemented classes (if relevant) in the previous section to animate the clock handles. You must display a handle for hours, minutes, seconds. You cannot use the `transform(deg)` CSS API, but you can use it with a matrix as argument.
 - There is no button to modify the analog clock at all.
+- Same as in part B, if you added the possibility to remove a clock, any analog clock should be removable too.
 - (Extra) Add a button to edit the time like a real analog clock: when in edit mode, you can move the minute handle to update the time, and the time stops during the manipulation.
 
 ### UI Design
 
-TBD
+Note: this is here to give you an idea, you are free to do your own design.
+
+![Clock UI 3](./clock_ui_3.png)
