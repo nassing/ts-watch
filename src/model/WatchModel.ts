@@ -1,0 +1,35 @@
+import { Time } from "../interface/Time";
+
+export class WatchModel {
+    private time: Time;
+
+    constructor(hours: number, minutes: number, seconds: number) {
+        this.time.hours = hours;
+        this.time.minutes = minutes;
+        this.time.seconds = seconds;
+    }
+
+    getHours(): number {
+        return this.time.hours;
+    }
+
+    getMinutes(): number {
+        return this.time.minutes;
+    }
+
+    getSeconds(): number {
+        return this.time.seconds;
+    }
+
+    setHours(hours: number): void {
+        this.time.hours = hours;
+    }
+
+    setMinutes(minutes: number): void {
+        this.time.minutes = minutes;
+    }
+
+    setSeconds(seconds: number): void {
+        this.time.seconds = seconds;
+    }
+}

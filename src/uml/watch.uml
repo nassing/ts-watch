@@ -23,8 +23,8 @@ class WatchView {
 }
 
 class WatchController {
-  -WatchModel watchModel
-  -WatchView watchView
+  -WatchModel model
+  -WatchView view
 
   +void incrementTime()
 }
