@@ -15,7 +15,9 @@ h1 {
   background: #FFFFFF;
 }
 
-
+button {
+  padding: 1rem;
+}
 
 .watch-wrapper {
   display: flex;
@@ -31,16 +33,31 @@ h1 {
   border: solid 2px black;
   flex-grow: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   padding-left: 2rem;
-  padding-right: 2rem;
   border-radius: 6px;
   border-top-right-radius: 0;
 }
 
+.button-labels {
+  width: 188px;
+  align-self: flex-end;
+  justify-content: space-between;
+  display: flex;
+  gap: 1rem;
+}
+
+.watch-display {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2rem;
+
+}
+
 .watch-text {
-  background: white;
+  background: rgb(170, 255, 255);
   border: solid 1px black;
   padding: 0 1rem 0 1rem;
   font-size: xx-large;
@@ -59,7 +76,7 @@ h1 {
 .buttons {
   align-self: flex-end;
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
   padding-right: 2px;
 }
 

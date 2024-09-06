@@ -13,7 +13,7 @@ const watchModel = new WatchModel(new Date().getHours(), new Date().getMinutes()
 
 const buttonModel = new ButtonModel();
 
-const watchView = new WatchView('watch');
+const watchView = new WatchView('watch-display');
 const buttonView = new ButtonView('buttons');
 
 new WatchController(watchModel, watchView, buttonModel);

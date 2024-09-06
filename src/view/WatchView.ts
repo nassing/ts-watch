@@ -5,10 +5,10 @@ import { formatWatchMode } from "../utils/textUtils";
 import { formatTime } from "../utils/timeUtils";
 
 export class WatchView {
-  private watch: HTMLElement;
+  private watchDisplay: HTMLElement;
 
-  constructor(watchId: string) {
-    this.watch = document.getElementById(watchId);
+  constructor(watchDisplayId: string) {
+    this.watchDisplay = document.getElementById(watchDisplayId);
   }
 
   getWatchMode: () => WatchMode = () => 'uneditableMode';
@@ -17,15 +17,16 @@ export class WatchView {
   getTime: () => Time = () => ({ hours: 0, minutes: 0, seconds: 0 });
 
   render(): void {
-    this.watch.innerHTML = '';
+    this.watchDisplay.innerHTML = '';
 
-    this.watch.classList.remove('watch-white');
-    this.watch.classList.remove('watch-yellow');
-    this.watch.classList.add(`watch-${this.getLightMode()}`);
+    const watch = document.getElementById('watch');
+    watch.classList.remove('watch-white');
+    watch.classList.remove('watch-yellow');
+    watch.classList.add(`watch-${this.getLightMode()}`);
 
     const displayWrapper = document.createElement('div');
     displayWrapper.classList.add('watch-text');
-    this.watch.appendChild(displayWrapper);
+    this.watchDisplay.appendChild(displayWrapper);
 
     const display = document.createElement('p');
     display.innerHTML = formatTime(this.getTime(), this.getWatchMode());
@@ -38,7 +39,7 @@ export class WatchView {
     if(this.getTempWatchMode()) {
       modeWrapper.classList.add('watch-text-temporary');
     }
-    this.watch.appendChild(modeWrapper);
+    this.watchDisplay.appendChild(modeWrapper);
 
     const mode = document.createElement('p');
     mode.textContent = formatWatchMode(this.getTempWatchMode() || this.getWatchMode());
