@@ -1,10 +1,7 @@
 import { Time } from "../interface/Time";
 
-export type WatchMode = 'editHoursMode' | 'editMinutesMode' | 'uneditableMode';
-
 export class WatchModel {
   private time: Time;
-  private mode: WatchMode = 'uneditableMode';
   private clickCount = 0;
 
   constructor(hours: number, minutes: number, seconds: number) {
@@ -41,15 +38,5 @@ export class WatchModel {
 
   setSeconds(seconds: number): void {
     this.time.seconds = seconds;
-  }
-
-
-
-  getMode(): WatchMode {
-    return this.mode;
-  }
-
-  setMode(mode: WatchMode): void {
-    this.mode = mode;
   }
 }

@@ -1,9 +1,12 @@
-import { WatchMode, WatchModel } from "../model/WatchModel";
+import { ButtonModel } from "../model/ButtonModel";
+import { WatchModel } from "../model/WatchModel";
 import { WatchView } from "../view/WatchView";
 
 export class WatchController {
   private model: WatchModel;
   private view: WatchView;
+
+  private buttonModel: ButtonModel;
 
   constructor(model: WatchModel, view: WatchView) {
     this.model = model;
@@ -34,15 +37,8 @@ export class WatchController {
     this.view.render(this.model.getTime());
   }
 
-  setMode(mode: WatchMode): void {
-    this.model.setMode(mode);
-  }
-
-  handleModeClick(): void {
-  }
-
   increase(): void {
-    switch (this.model.getMode()) {
+    switch (this.buttonModel.getMode()) {
       case 'editHoursMode':
         this.increaseHours();
         break;

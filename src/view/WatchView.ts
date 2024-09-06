@@ -4,23 +4,50 @@ import { formatTime } from "../utils/timeUtils";
 export type LightMode = 'white' | 'yellow';
 
 export class WatchView {
-  private container: HTMLElement;
+  private element: HTMLElement;
   private lightMode: LightMode = 'yellow';
 
-  constructor(containerId: string) {
-    this.container = document.getElementById(containerId) as HTMLElement;
+  constructor(elementId: string) {
+    this.element = document.getElementById(elementId);
   }
 
+  setLightMode(lightMode: LightMode): void {
+    this.lightMode = lightMode;
+  }
+
+  getLightMode(): LightMode {
+    return this.lightMode;
+  }
+
+  onLightModeButtonClick: () => void = () => {};
+  onIncreaseButtonClick: () => void = () => {};
+  onSwitchModeButtonClick: () => void = () => {};
+
   render(time: Time): void {
-    this.container.innerHTML = '';
+    this.element.innerHTML = '';
     
     const watch = document.createElement('div');
     watch.classList.add(`watch-${this.lightMode}`);
 
     const display = document.createElement('p');
     display.textContent = formatTime(time);
-
     watch.appendChild(display);
-    this.container.appendChild(watch);
+
+    const lightModeButton = document.createElement('button');
+    lightModeButton.textContent = 'Change light mode';
+    lightModeButton.onclick = this.onLightModeButtonClick;
+    watch.appendChild(lightModeButton);
+
+    const increaseButton = document.createElement('button');
+    increaseButton.textContent = 'Increase';
+    increaseButton.onclick = this.onIncreaseButtonClick;
+    watch.appendChild(increaseButton);
+
+    const switchModeButton = document.createElement('button');
+    switchModeButton.textContent = 'Switch mode';
+    switchModeButton.onclick = this.onSwitchModeButtonClick;
+    watch.appendChild(switchModeButton);
+    
+    this.element.appendChild(watch);
   }
 }
