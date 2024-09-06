@@ -9,3 +9,12 @@ h1 {
 .watch-white {
   background: #FFFFFF;
 }
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { visibility: visible; }
+  50%, 100% { visibility: hidden; }
+}

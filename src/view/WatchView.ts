@@ -1,4 +1,5 @@
 import { Time } from "../interface/Time";
+import { WatchMode } from "../model/ButtonModel";
 import { formatTime } from "../utils/timeUtils";
 
 export type LightMode = 'white' | 'yellow';
@@ -22,7 +23,7 @@ export class WatchView {
   onLightModeButtonClick: () => void = () => {};
   onIncreaseButtonClick: () => void = () => {};
   onSwitchModeButtonClick: () => void = () => {};
-  getWatchMode: () => string = () => '';
+  getWatchMode: () => WatchMode = () => 'uneditableMode';
 
   render(time: Time): void {
     this.element.innerHTML = '';
@@ -31,7 +32,7 @@ export class WatchView {
     watch.classList.add(`watch-${this.lightMode}`);
 
     const display = document.createElement('p');
-    display.textContent = formatTime(time);
+    display.innerHTML = formatTime(time, this.getWatchMode());
     watch.appendChild(display);
 
     const lightModeButton = document.createElement('button');
