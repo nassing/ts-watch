@@ -22,6 +22,7 @@ export class WatchView {
   onLightModeButtonClick: () => void = () => {};
   onIncreaseButtonClick: () => void = () => {};
   onSwitchModeButtonClick: () => void = () => {};
+  getWatchMode: () => string = () => '';
 
   render(time: Time): void {
     this.element.innerHTML = '';
@@ -44,7 +45,7 @@ export class WatchView {
     watch.appendChild(increaseButton);
 
     const switchModeButton = document.createElement('button');
-    switchModeButton.textContent = 'Switch mode';
+    switchModeButton.textContent = this.getWatchMode();
     switchModeButton.onclick = this.onSwitchModeButtonClick;
     watch.appendChild(switchModeButton);
     
