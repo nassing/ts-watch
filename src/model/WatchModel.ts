@@ -1,35 +1,55 @@
 import { Time } from "../interface/Time";
 
+export type WatchMode = 'editHoursMode' | 'editMinutesMode' | 'uneditableMode';
+
 export class WatchModel {
-    private time: Time;
+  private time: Time;
+  private mode: WatchMode = 'uneditableMode';
+  private clickCount = 0;
 
-    constructor(hours: number, minutes: number, seconds: number) {
-        this.time.hours = hours;
-        this.time.minutes = minutes;
-        this.time.seconds = seconds;
-    }
+  constructor(hours: number, minutes: number, seconds: number) {
+    this.time = {
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds
+    };
+  }
 
-    getHours(): number {
-        return this.time.hours;
-    }
+  getTime(): Time {
+    return this.time;
+  }
 
-    getMinutes(): number {
-        return this.time.minutes;
-    }
+  getHours(): number {
+    return this.time.hours;
+  }
 
-    getSeconds(): number {
-        return this.time.seconds;
-    }
+  getMinutes(): number {
+    return this.time.minutes;
+  }
 
-    setHours(hours: number): void {
-        this.time.hours = hours;
-    }
+  getSeconds(): number {
+    return this.time.seconds;
+  }
 
-    setMinutes(minutes: number): void {
-        this.time.minutes = minutes;
-    }
+  setHours(hours: number): void {
+    this.time.hours = hours;
+  }
 
-    setSeconds(seconds: number): void {
-        this.time.seconds = seconds;
-    }
+  setMinutes(minutes: number): void {
+    this.time.minutes = minutes;
+  }
+
+  setSeconds(seconds: number): void {
+    this.time.seconds = seconds;
+  }
+
+
+
+  getMode(): WatchMode {
+    return this.mode;
+  }
+
+  setMode(mode: WatchMode): void {
+    this.mode = mode;
+  }
 }

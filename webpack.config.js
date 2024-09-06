@@ -1,10 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// Note: switched target to 'web' because the project would not run without it
+
 module.exports = {
   entry: './src/index.ts',
   devtool: 'source-map',
-  target: 'node',
+  target: 'web',
   module: {
     rules: [
       {
@@ -26,7 +28,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [new HtmlWebpackPlugin({
-    title: 'GE Empty Template',
+    title: 'GE Watch',
     template: path.join(process.cwd(), 'src/index.html'),
     filename: 'index.html',
   })],
