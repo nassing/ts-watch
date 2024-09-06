@@ -1,5 +1,6 @@
-import { ButtonModel } from "../model/ButtonModel";
+import { ButtonModel, WatchMode } from "../model/ButtonModel";
 import { WatchModel } from "../model/WatchModel";
+import { mod } from "../utils/mathUtils";
 import { WatchView } from "../view/WatchView";
 
 export class WatchController {
@@ -8,13 +9,38 @@ export class WatchController {
 
   private buttonModel: ButtonModel;
 
-  constructor(model: WatchModel, view: WatchView) {
+  constructor(model: WatchModel, view: WatchView, buttonModel: ButtonModel) {
     this.model = model;
     this.view = view;
+    this.buttonModel = buttonModel;
+
+    this.view.getWatchMode = () => this.buttonModel.getMode();
+    this.view.getLightMode = () => this.model.getLightMode();
+    this.view.getTime = () => this.model.getTime();
+    this.view.getTempWatchMode = () => this.getTempWatchMode();
+
+    this.view.render();
 
     // Do not use setTimeout
     // Use arrow function to keep the context of 'this'
     setInterval(() => this.incrementTime(), 1000);
+  }
+
+  getTempWatchMode(): WatchMode | undefined {
+    const isWatchModeTemporary = this.buttonModel.getIsListeningToClicks();
+
+    if (!isWatchModeTemporary) {
+      return undefined;
+    } else {
+      switch(mod(this.buttonModel.getClickCount(),3)) {
+        case 1:
+          return 'editHoursMode';
+        case 2:
+          return 'editMinutesMode';
+        case 0:
+          return 'uneditableMode';
+      }
+    }
   }
 
   incrementTime(): void {
@@ -34,18 +60,7 @@ export class WatchController {
       this.model.setHours(0);
     }
 
-    this.view.render(this.model.getTime());
-  }
-
-  increase(): void {
-    switch (this.buttonModel.getMode()) {
-      case 'editHoursMode':
-        this.increaseHours();
-        break;
-      case 'editMinutesMode':
-        this.increaseMinutes();
-        break;
-    }
+    this.view.render();
   }
 
   increaseHours(): void {

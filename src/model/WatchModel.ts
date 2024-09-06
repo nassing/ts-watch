@@ -1,8 +1,10 @@
 import { Time } from "../interface/Time";
 
+export type LightMode = 'white' | 'yellow';
+
 export class WatchModel {
   private time: Time;
-  private clickCount = 0;
+  private lightMode: LightMode = 'yellow';
 
   constructor(hours: number, minutes: number, seconds: number) {
     this.time = {
@@ -38,5 +40,13 @@ export class WatchModel {
 
   setSeconds(seconds: number): void {
     this.time.seconds = seconds;
+  }
+
+  setLightMode(lightMode: LightMode): void {
+    this.lightMode = lightMode;
+  }
+
+  getLightMode(): LightMode {
+    return this.lightMode;
   }
 }

@@ -1,35 +1,37 @@
 import { ButtonModel } from "../model/ButtonModel";
 import { WatchModel } from "../model/WatchModel";
 import { mod } from "../utils/mathUtils";
+import { ButtonView } from "../view/ButtonView";
 import { WatchView } from "../view/WatchView";
 
 export class ButtonController {
   private model: ButtonModel;
-  private view: WatchView;
+  private view: ButtonView;
 
   private watchModel: WatchModel;
+  private watchView: WatchView;
 
-  constructor(model: ButtonModel, view: WatchView, watchModel: WatchModel) {
+  constructor(model: ButtonModel, view: ButtonView, watchModel: WatchModel, watchView: WatchView) {
     this.model = model;
     this.view = view;
     this.watchModel = watchModel;
+    this.watchView = watchView;
 
     this.view.onLightModeButtonClick = () => this.handleLightModeButton();
     this.view.onIncreaseButtonClick = () => this.handleIncreaseButton();
     this.view.onSwitchModeButtonClick = () => this.handleModeButton();
-    this.view.getWatchMode = () => this.model.getMode();
+
+    this.view.render();
   }
 
   handleLightModeButton(): void {
-    this.model.setIsListeningToClicks(false);
-
-    if (this.view.getLightMode() === 'white') {
-      this.view.setLightMode('yellow');
+    if (this.watchModel.getLightMode() === 'white') {
+      this.watchModel.setLightMode('yellow');
     } else {
-      this.view.setLightMode('white');
+      this.watchModel.setLightMode('white');
     }
 
-    this.view.render(this.watchModel.getTime());
+    this.watchView.render();
   }
 
   handleIncreaseButton(): void {
@@ -38,10 +40,13 @@ export class ButtonController {
     } else if (this.model.getMode() === 'editMinutesMode') {
       this.watchModel.setMinutes(this.watchModel.getMinutes() + 1);
     }
+
+    this.watchView.render();
   }
 
   handleModeButton(): void {
     this.model.setClickCount(this.model.getClickCount() + 1);
+    this.watchView.render();
 
     if (!this.model.getIsListeningToClicks()) {
       this.model.setIsListeningToClicks(true);
@@ -61,5 +66,7 @@ export class ButtonController {
 
     this.model.setIsListeningToClicks(false);
     this.model.setClickCount(0);
+
+    this.watchView.render();
   }
 }
