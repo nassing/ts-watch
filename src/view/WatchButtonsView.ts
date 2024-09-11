@@ -1,4 +1,4 @@
-export class ButtonsView {
+export class WatchButtonsView {
   private buttons: HTMLElement;
 
   constructor(buttonsId: string) {

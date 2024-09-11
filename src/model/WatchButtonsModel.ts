@@ -1,6 +1,6 @@
 export type WatchMode = 'editHoursMode' | 'editMinutesMode' | 'uneditableMode';
 
-export class ButtonsModel {
+export class WatchButtonsModel {
   private mode: WatchMode = 'uneditableMode';
   private isListeningToClicks = false;
   private clickCount = 0;

@@ -1,17 +1,17 @@
-import { ButtonModel } from "../model/ButtonsModel";
+import { WatchButtonsModel } from "../model/WatchButtonsModel";
 import { WatchModel } from "../model/WatchModel";
 import { mod } from "../utils/mathUtils";
-import { ButtonView } from "../view/ButtonsView";
+import { WatchButtonsView } from "../view/WatchButtonsView";
 import { WatchView } from "../view/WatchView";
 
-export class ButtonsController {
-  private model: ButtonModel;
-  private view: ButtonView;
+export class WatchButtonsController {
+  private model: WatchButtonsModel;
+  private view: WatchButtonsView;
 
   private watchModel: WatchModel;
   private watchView: WatchView;
 
-  constructor(model: ButtonModel, view: ButtonView, watchModel: WatchModel, watchView: WatchView) {
+  constructor(model: WatchButtonsModel, view: WatchButtonsView, watchModel: WatchModel, watchView: WatchView) {
     this.model = model;
     this.view = view;
     this.watchModel = watchModel;
