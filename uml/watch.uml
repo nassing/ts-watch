@@ -1,0 +1,83 @@
+@startuml
+
+interface Time {
+  +number hours
+  +number minutes
+  +number seconds
+}
+
+class WatchModel {
+  -Time time
+
+  +number getHours()
+  +number getMinutes()
+  +number getSeconds()
+  +LightMode getLightMode()
+  +void setHours(number hours)
+  +void setMinutes(number minutes)
+  +void setSeconds(number seconds)
+  +void setLightMode(LightMode mode)
+}
+
+class WatchView {
+  -HTMLElement watchDisplay
+
+  +WatchMode getWatchMode()
+  +(WatchMode | undefined) getTempWatchMode()
+  +LightMode getLightMode()
+  +Time getTime()
+
+  +void render()
+}
+
+class WatchController {
+  +void incrementTime()
+  +void (WatchMode | undefined) getTempWatchMode()
+  +void increaseHours()
+  +void increaseMinutes()
+}
+
+class ButtonsModel {
+  -WatchMode mode
+  -boolean isListeningToClicks
+  -number clickCount
+
+  +WatchMode getMode()
+  +boolean getIsListeningToClicks()
+  +number getClickCount()
+  +void setMode(WatchMode mode)
+  +void setIsListeningToClicks(boolean isListeningToClicks)
+  +void setClickCount(number clickCount)
+}
+
+class ButtonsView {
+  -HTMLElement buttons
+
+  +void onLightModeButtonClick()
+  +void onIncreaseButtonClick()
+  +void onSwitchModeButtonClick()
+
+  +void render()
+}
+
+class ButtonsController {
+  +void handleLightModeButton()
+  +void handleIncreaseButton()
+  +void handleModeButton()
+  +void handleModeButtonTimeout()
+}
+
+
+WatchController --> WatchModel
+WatchController --> WatchView
+WatchController --> ButtonsModel
+
+WatchModel --> Time
+
+ButtonsController --> ButtonsView
+ButtonsController --> ButtonsModel
+ButtonsController --> WatchModel
+ButtonsController --> WatchView
+
+
+@enduml

@@ -1,4 +1,4 @@
-export class ButtonView {
+export class ButtonsView {
   private buttons: HTMLElement;
 
   constructor(buttonsId: string) {

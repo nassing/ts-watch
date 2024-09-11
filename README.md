@@ -9,6 +9,10 @@ Typescript watch project.
 - The user can switch between modes by pressing the `MODE` button: one press for `Setting hours` mode, two presses for `Setting minutes` mode, and three presses for `Locked` mode. Inputs have to be done under 700 milliseconds.
 - A preview feature is available, where the watch displays what the mode will be if no additional button is pressed.
 
+## UML
+
+Project class diagram (as well as its PlantUML code) is available in `./uml/`.
+
 ## Running the project
 
 To run the project, install npm and run the following commands:

@@ -1,10 +1,10 @@
-import { ButtonModel } from "../model/ButtonModel";
+import { ButtonModel } from "../model/ButtonsModel";
 import { WatchModel } from "../model/WatchModel";
 import { mod } from "../utils/mathUtils";
-import { ButtonView } from "../view/ButtonView";
+import { ButtonView } from "../view/ButtonsView";
 import { WatchView } from "../view/WatchView";
 
-export class ButtonController {
+export class ButtonsController {
   private model: ButtonModel;
   private view: ButtonView;
 

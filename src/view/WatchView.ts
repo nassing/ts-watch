@@ -1,5 +1,5 @@
 import { Time } from "../interface/Time";
-import { WatchMode } from "../model/ButtonModel";
+import { WatchMode } from "../model/ButtonsModel";
 import { LightMode } from "../model/WatchModel";
 import { formatWatchMode } from "../utils/textUtils";
 import { formatTime } from "../utils/timeUtils";
