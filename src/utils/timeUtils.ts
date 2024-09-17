@@ -1,5 +1,5 @@
 import { Time } from "../interface/Time";
-import { WatchMode } from "../model/WatchButtonsModel";
+import { WatchMode } from "../model/WatchModel";
 
 export function formatDigit(digit: number): string {
   return digit < 10 

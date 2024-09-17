@@ -4,6 +4,11 @@ export class WatchWallModel {
   private watches: Watch[];
   private timezone: number;
 
+  constructor() {
+    this.watches = [];
+    this.timezone = 0;
+  }
+
   public  getTimezone(): number {
     return this.timezone;
   }

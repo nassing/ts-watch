@@ -1,8 +1,13 @@
 import { Time } from "../interface/Time";
 
 export type LightMode = 'white' | 'yellow';
+export type WatchMode = 'editHoursMode' | 'editMinutesMode' | 'uneditableMode';
 
 export class WatchModel {
+  private mode: WatchMode = 'uneditableMode';
+  private isListeningToClicks = false;
+  private clickCount = 0;
+
   private time: Time;
   private lightMode: LightMode = 'yellow';
 
@@ -48,5 +53,29 @@ export class WatchModel {
 
   getLightMode(): LightMode {
     return this.lightMode;
+  }
+
+  getMode(): WatchMode {
+    return this.mode;
+  }
+
+  getIsListeningToClicks(): boolean {
+    return this.isListeningToClicks;
+  }
+
+  getClickCount(): number {
+    return this.clickCount;
+  }
+  
+  setMode(mode: WatchMode): void {
+    this.mode = mode;
+  }
+
+  setIsListeningToClicks(isListeningToClicks: boolean): void {
+    this.isListeningToClicks = isListeningToClicks;
+  }
+
+  setClickCount(clickCount: number): void {
+    this.clickCount = clickCount;
   }
 }

@@ -1,25 +1,30 @@
-import { WatchButtonsController } from "../controller/WatchButtonsController";
 import { WatchController } from "../controller/WatchController";
-import { WatchButtonsModel } from "../model/WatchButtonsModel";
 import { WatchModel } from "../model/WatchModel";
-import { WatchButtonsView } from "../view/WatchButtonsView";
 import { WatchView } from "../view/WatchView";
 
 export class Watch {
   private watchController: WatchController;
-  private watchButtonsController: WatchButtonsController;
+  private watchNumber: number;
 
   removeWatch: () => void = () => {};
 
-  constructor() {
+  constructor(watchNumber: number) {
     const watchModel = new WatchModel(new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
+    
+    const watchView = new WatchView('watch-display', 'buttons', watchNumber);
+    
+    this.watchController = new WatchController(watchModel, watchView, this.removeWatch);
+  }
 
-    const buttonModel = new WatchButtonsModel();
-    
-    const watchView = new WatchView('watch-display');
-    const buttonView = new WatchButtonsView('buttons');
-    
-    this.watchController = new WatchController(watchModel, watchView, buttonModel);
-    this.watchButtonsController = new WatchButtonsController(buttonModel, buttonView, watchModel, watchView);
+  render(): void {
+    this.watchController.render();
+  }
+
+  setWatchNumber(watchNumber: number): void {
+    this.watchNumber = watchNumber;
+  }
+
+  getWatchNumber(): number {
+    return this.watchNumber;
   }
 }

@@ -1,25 +1,33 @@
 import { Time } from "../interface/Time";
-import { WatchMode } from "../model/WatchButtonsModel";
-import { LightMode } from "../model/WatchModel";
+import { LightMode, WatchMode } from "../model/WatchModel";
 import { formatWatchMode } from "../utils/textUtils";
 import { formatTime } from "../utils/timeUtils";
 
 export class WatchView {
   private watchDisplay: HTMLElement;
+  private buttons: HTMLElement;
+  private watchNumber: number;
 
-  constructor(watchDisplayId: string) {
-    this.watchDisplay = document.getElementById(watchDisplayId);
+
+  constructor(watchDisplayId: string, buttonsId: string, watchNumber: number) {
+    this.watchDisplay = document.getElementById(`${watchDisplayId}-${watchNumber}`);
+    this.buttons = document.getElementById(`${buttonsId}-${watchNumber}`);
+    this.watchNumber = watchNumber;
   }
 
   getWatchMode: () => WatchMode = () => 'uneditableMode';
   getTempWatchMode: () => WatchMode | undefined = () => 'uneditableMode';
   getLightMode: () => LightMode = () => 'yellow';
   getTime: () => Time = () => ({ hours: 0, minutes: 0, seconds: 0 });
+  onLightModeButtonClick: () => void = () => {};
+  onIncreaseButtonClick: () => void = () => {};
+  onSwitchModeButtonClick: () => void = () => {};
+  removeWatch: () => void = () => {};
 
   render(): void {
     this.watchDisplay.innerHTML = '';
 
-    const watch = document.getElementById('watch');
+    const watch = document.getElementById(`watch-${this.watchNumber}`);
     watch.classList.remove('watch-white');
     watch.classList.remove('watch-yellow');
     watch.classList.add(`watch-${this.getLightMode()}`);
@@ -44,5 +52,28 @@ export class WatchView {
     const mode = document.createElement('p');
     mode.textContent = formatWatchMode(this.getTempWatchMode() || this.getWatchMode());
     modeWrapper.appendChild(mode);
+
+
+    this.buttons.innerHTML = '';
+
+    const increaseButton = document.createElement('button');
+    increaseButton.textContent = '';
+    increaseButton.onclick = this.onIncreaseButtonClick;
+    this.buttons.appendChild(increaseButton);
+
+    const switchModeButton = document.createElement('button');
+    switchModeButton.textContent = '';
+    switchModeButton.onclick = this.onSwitchModeButtonClick;
+    this.buttons.appendChild(switchModeButton);
+    
+    const lightModeButton = document.createElement('button');
+    lightModeButton.textContent = '';
+    lightModeButton.onclick = this.onLightModeButtonClick;
+    this.buttons.appendChild(lightModeButton);
+
+    const removeWatchButton = document.createElement('button');
+    increaseButton.textContent = '';
+    increaseButton.onclick = this.removeWatch;
+    this.buttons.appendChild(removeWatchButton);
   }
 }

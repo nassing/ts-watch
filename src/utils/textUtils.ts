@@ -1,4 +1,4 @@
-import { WatchMode } from "../model/WatchButtonsModel";
+import { WatchMode } from "../model/WatchModel";
 
 export function formatWatchMode(watchMode: WatchMode): string {
   switch (watchMode) {
