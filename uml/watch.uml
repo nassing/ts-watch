@@ -1,5 +1,4 @@
 @startuml
-
 interface Time {
   +number hours
   +number minutes
@@ -26,7 +25,6 @@ class WatchView {
   +(WatchMode | undefined) getTempWatchMode()
   +LightMode getLightMode()
   +Time getTime()
-
   +void render()
 }
 
@@ -37,7 +35,7 @@ class WatchController {
   +void increaseMinutes()
 }
 
-class ButtonsModel {
+class WatchButtonsModel {
   -WatchMode mode
   -boolean isListeningToClicks
   -number clickCount
@@ -50,34 +48,72 @@ class ButtonsModel {
   +void setClickCount(number clickCount)
 }
 
-class ButtonsView {
+class WatchButtonsView {
   -HTMLElement buttons
 
   +void onLightModeButtonClick()
   +void onIncreaseButtonClick()
   +void onSwitchModeButtonClick()
-
+  +void onDeleteWatchButtonClick()
   +void render()
 }
 
-class ButtonsController {
+class WatchButtonsController {
   +void handleLightModeButton()
   +void handleIncreaseButton()
   +void handleModeButton()
   +void handleModeButtonTimeout()
 }
 
+class Watch {
+  +void remove()
+}
+
+class WatchWallController {
+  +void createWatch()
+  +void removeWatch(Watch watch)
+
+  +Watch[] getWatches()
+  +number getTimezone()
+}
+
+class WatchWallModel {
+  -Watch[] watches
+  -number timezone
+
+  +number getTimezone()
+  +void setTimezone(number timezone)
+  +void addWatch(Watch watch)
+  +void removeWatch(Watch watch)
+  +Watch[] getWatches()
+}
+
+class WatchWallView {
+  -HTMLElement wall
+
+  +void getWatches()
+  +void onIncreaseTimezoneButtonClick()
+  +void onDecreaseTimezoneButtonClick()
+  +void onCreateClockClick()
+  +void render()
+}
+
 
 WatchController --> WatchModel
 WatchController --> WatchView
-WatchController --> ButtonsModel
+WatchController --> WatchButtonsModel
 
 WatchModel --> Time
 
-ButtonsController --> ButtonsView
-ButtonsController --> ButtonsModel
-ButtonsController --> WatchModel
-ButtonsController --> WatchView
+WatchButtonsController --> WatchButtonsView
+WatchButtonsController --> WatchButtonsModel
+WatchButtonsController --> WatchModel
+WatchButtonsController --> WatchView
 
+WatchWallController --> WatchWallModel
+WatchWallController --> WatchWallView
+WatchWallModel -->"*" Watch
 
+Watch --> WatchController
+Watch --> WatchButtonsController
 @enduml

@@ -1,20 +1,11 @@
 import './index.css';
 
-import { WatchModel } from './model/WatchModel';
-import { WatchView } from './view/WatchView';
-import { WatchController } from './controller/WatchController';
-
-import { WatchButtonsModel } from './model/WatchButtonsModel';
-import { WatchButtonsView } from './view/WatchButtonsView';
-import { WatchButtonsController } from './controller/WatchButtonsController';
+import { WatchWallModel } from './model/WatchWallModel';
+import { WatchWallView } from './view/WatchWallView';
+import { WatchWallController } from './controller/WatchWallController';
 
 // Not an ideal solution, but perfect for manually testing edge cases
-const watchModel = new WatchModel(new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
+const watchWallModel = new WatchWallModel();
+const watchWallView = new WatchWallView('watch-wall');
 
-const buttonModel = new WatchButtonsModel();
-
-const watchView = new WatchView('watch-display');
-const buttonView = new WatchButtonsView('buttons');
-
-new WatchController(watchModel, watchView, buttonModel);
-new WatchButtonsController(buttonModel, buttonView, watchModel, watchView);
+new WatchWallController(watchWallModel, watchWallView);

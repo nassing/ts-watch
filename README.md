@@ -22,7 +22,7 @@ npm install
 npm run start
 ```
 
-Alternatively, the deployed version is available at https://watch.nassing.fr .
+Alternatively, the deployed version is available at https://watches.nassing.fr .
 
 ## Issues
 
