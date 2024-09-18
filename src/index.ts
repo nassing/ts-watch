@@ -6,6 +6,6 @@ import { WatchWallController } from './controller/WatchWallController';
 
 // Not an ideal solution, but perfect for manually testing edge cases
 const watchWallModel = new WatchWallModel();
-const watchWallView = new WatchWallView('watch-wall');
+const watchWallView = new WatchWallView();
 
 new WatchWallController(watchWallModel, watchWallView);

@@ -16,10 +16,6 @@ export class Watch {
     this.watchController = new WatchController(watchModel, watchView, this.removeWatch);
   }
 
-  render(): void {
-    this.watchController.render();
-  }
-
   setWatchNumber(watchNumber: number): void {
     this.watchNumber = watchNumber;
   }

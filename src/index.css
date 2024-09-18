@@ -29,6 +29,10 @@ button {
   height: 300px;
 }
 
+.add-watch {
+  color: white;
+}
+
 .watch {
   border: solid 2px black;
   flex-grow: 1;

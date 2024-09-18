@@ -7,6 +7,9 @@ interface Time {
 
 class WatchModel {
   -Time time
+  -WatchMode mode
+  -boolean isListeningToClicks
+  -number clickCount
 
   +number getHours()
   +number getMinutes()
@@ -16,30 +19,6 @@ class WatchModel {
   +void setMinutes(number minutes)
   +void setSeconds(number seconds)
   +void setLightMode(LightMode mode)
-}
-
-class WatchView {
-  -HTMLElement watchDisplay
-
-  +WatchMode getWatchMode()
-  +(WatchMode | undefined) getTempWatchMode()
-  +LightMode getLightMode()
-  +Time getTime()
-  +void render()
-}
-
-class WatchController {
-  +void incrementTime()
-  +void (WatchMode | undefined) getTempWatchMode()
-  +void increaseHours()
-  +void increaseMinutes()
-}
-
-class WatchButtonsModel {
-  -WatchMode mode
-  -boolean isListeningToClicks
-  -number clickCount
-
   +WatchMode getMode()
   +boolean getIsListeningToClicks()
   +number getClickCount()
@@ -48,17 +27,27 @@ class WatchButtonsModel {
   +void setClickCount(number clickCount)
 }
 
-class WatchButtonsView {
+class WatchView {
+  -HTMLElement watchDisplay
   -HTMLElement buttons
 
+  +WatchMode getWatchMode()
+  +(WatchMode | undefined) getTempWatchMode()
+  +LightMode getLightMode()
+  +Time getTime()
   +void onLightModeButtonClick()
   +void onIncreaseButtonClick()
   +void onSwitchModeButtonClick()
   +void onDeleteWatchButtonClick()
+
   +void render()
 }
 
-class WatchButtonsController {
+class WatchController {
+  +void incrementTime()
+  +void (WatchMode | undefined) getTempWatchMode()
+  +void increaseHours()
+  +void increaseMinutes()
   +void handleLightModeButton()
   +void handleIncreaseButton()
   +void handleModeButton()
@@ -66,13 +55,18 @@ class WatchButtonsController {
 }
 
 class Watch {
-  +void remove()
+  -number watchNumber
+
+  +void setWatchNumber(number watchNumber)
+  +number getWatchNumber()
+  +void removeWatch()
 }
 
 class WatchWallController {
+  +void onIncreaseTimezoneButtonClick()
+  +void onDecreaseTimezoneButtonClick()
   +void createWatch()
   +void removeWatch(Watch watch)
-
   +Watch[] getWatches()
   +number getTimezone()
 }
@@ -83,37 +77,30 @@ class WatchWallModel {
 
   +number getTimezone()
   +void setTimezone(number timezone)
-  +void addWatch(Watch watch)
+  +void createWatch(Watch watch)
   +void removeWatch(Watch watch)
   +Watch[] getWatches()
 }
 
 class WatchWallView {
-  -HTMLElement wall
-
-  +void getWatches()
+  +number getTimezone()
   +void onIncreaseTimezoneButtonClick()
   +void onDecreaseTimezoneButtonClick()
   +void onCreateClockClick()
-  +void render()
+  +void initNewWatch(watchNumber: number)
+  +void initRender()
+  +void renderGMT()
 }
 
 
 WatchController --> WatchModel
 WatchController --> WatchView
-WatchController --> WatchButtonsModel
 
 WatchModel --> Time
-
-WatchButtonsController --> WatchButtonsView
-WatchButtonsController --> WatchButtonsModel
-WatchButtonsController --> WatchModel
-WatchButtonsController --> WatchView
 
 WatchWallController --> WatchWallModel
 WatchWallController --> WatchWallView
 WatchWallModel -->"*" Watch
 
 Watch --> WatchController
-Watch --> WatchButtonsController
 @enduml
